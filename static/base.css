@@ -1,0 +1,12 @@
+body {
+  font-family: sans-serif;
+}
+
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+::selection {
+  background-color: black;
+  color: white;
+}
