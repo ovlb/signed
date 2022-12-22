@@ -1,8 +1,11 @@
 body {
   font-family: sans-serif;
+  padding: 5vmin;
 }
 
 *, *::after, *::before {
+  font-family: inherit;
+  font-size: inherit;
   box-sizing: border-box;
 }
 

@@ -77,4 +77,21 @@
 	footer {
 		margin-top: 5rem;
 	}
+
+	button {
+		background-color: hotpink;
+		border: none;
+		border-radius: 0.25rem;
+		padding: 0.5rem 0.75rem;
+		color: white;
+		font-weight: bold;
+		transition: all 0.2s ease-out;
+	}
+
+	button:hover,
+	button:focus {
+		background-color: paleturquoise;
+		color: black;
+		transform: scale(1.2);
+	}
 </style>
