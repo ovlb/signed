@@ -75,7 +75,8 @@
 <style>
 	main,
 	footer {
-		margin-top: 5rem;
+		margin-top: 3rem;
+		line-height: 1.5;
 	}
 
 	button {
