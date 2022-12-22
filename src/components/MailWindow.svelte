@@ -13,10 +13,11 @@
 
 <style>
 	.mail-window {
-		border-radius: 0.25rem;
-		border: 1px solid #000;
+		background: silver;
+		box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf, inset -2px -2px grey,
+			inset 2px 2px #fff;
+		padding: 3px;
 		max-width: 45rem;
-		overflow: hidden;
 	}
 
 	.mail-content {

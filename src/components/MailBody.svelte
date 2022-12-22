@@ -14,7 +14,7 @@
 <style>
 	.salutation,
 	.placeholder {
-		background-color: lightgray;
+		background-color: #555;
 		height: 1rem;
 		width: var(--ph-width, 75%);
 	}
