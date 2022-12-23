@@ -13,7 +13,7 @@
 
 {#if favs.size}
 	<ul class="fav-list" role="list">
-		{#each Array.from(favs) as fav (fav)}
+		{#each Array.from(favs).reverse() as fav (fav)}
 			<li>
 				{fav}
 				<button class="btn-remove" aria-label="Remove {fav}" on:click={() => dispatchRemove(fav)}

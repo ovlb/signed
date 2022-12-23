@@ -5,6 +5,7 @@
 	import MailWindow from '../components/MailWindow.svelte';
 	import ControlSection from '../components/ControlSection.svelte';
 	import FavList from '../components/FavList.svelte';
+	import { updateURLState } from '../utils/update-state';
 
 	const LS_FAVS = 'sigFavs';
 
@@ -15,7 +16,7 @@
 	// let excluded: string[] = [];
 
 	$: activeIndex = -1;
-	// $: () => $page.url.searchParams.set('name', String(name));
+	$: name && updateURLState('name', name);
 
 	const { length } = signatures;
 
@@ -51,7 +52,7 @@
 		activeSignature = signatures[newIndex];
 		activeIndex = newIndex;
 
-		window.history.replaceState('', '', `?signature=${newIndex}&name=${name}`);
+		updateURLState('signature', activeIndex);
 	}
 
 	function handleClick(event: CustomEvent) {

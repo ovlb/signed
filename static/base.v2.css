@@ -4,7 +4,7 @@
 
 body {
   accent-color: hotpink;
-  font-family: sans-serif;
+  font-family: ui-sans-serif,sans-serif;
   padding: 5vmin;
 }
 

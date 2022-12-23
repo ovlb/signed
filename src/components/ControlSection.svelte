@@ -1,14 +1,13 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
 	import { punctuation } from '../data/form-data';
 	import type { Punctuation } from '../data/form-data';
+	import { updateURLState } from '../utils/update-state';
 
 	const dispatch = createEventDispatcher();
 	const LS_PUNC = 'sigPunc';
 
-	export let active: string = localStorage.getItem(LS_PUNC) || punctuation[0].sign;
-
-	$: localStorage.setItem(LS_PUNC, active);
+	export let active: string;
 
 	function confirmReset() {
 		if (window.confirm('Do you really want to remove all favourites?')) {
@@ -20,6 +19,25 @@
 		dispatch('btnClick', {
 			type
 		});
+	}
+
+	onMount(() => {
+		const { search } = window.location;
+
+		if (search) {
+			const params = new URLSearchParams(search);
+
+			if (params.has('punctuation')) {
+				active = params.get('punctuation') || '';
+			} else {
+				active = localStorage.getItem(LS_PUNC) || punctuation[0].sign;
+			}
+		}
+	});
+
+	$: {
+		active && localStorage.setItem(LS_PUNC, active);
+		active && updateURLState('punctuation', active);
 	}
 </script>
 
