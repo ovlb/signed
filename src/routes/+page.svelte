@@ -95,6 +95,16 @@
 
 		updateFavStorage();
 	}
+
+	function applyFav(event: CustomEvent) {
+		const { item } = event.detail;
+		const newIndex = signatures.findIndex((sig) => sig === item);
+
+		activeSignature = item;
+		activeIndex = newIndex;
+
+		updateURLState('signature', newIndex);
+	}
 </script>
 
 <header>
@@ -122,7 +132,12 @@
 		<ControlSection bind:active={shownPunctuation} on:btnClick={handleClick} />
 		{#if favs.size}
 			{#await import('../components/FavList.svelte') then component}
-				<svelte:component this={component.default} {favs} on:removeFav={removeFav} />
+				<svelte:component
+					this={component.default}
+					{favs}
+					on:removeFav={removeFav}
+					on:applyFav={applyFav}
+				/>
 			{/await}
 		{/if}
 	{/if}
@@ -131,9 +146,8 @@
 <footer>
 	<small
 		>Another project from <a href="https://www.todayintabs.com/" rel="noopener,nofollow"
-			>Today in Tabs’</a
-		>
-		Discord. Subscribe for fun.<br />
+			>Today in Tabs</a
+		>’ Discord. Subscribe for fun.<br />
 		<a href="https://github.com/ovlb/signed" rel="noopener,nofollow">Source Code</a>
 	</small>
 </footer>
@@ -146,7 +160,7 @@
 	}
 	main,
 	footer {
-		margin-top: 3rem;
+		margin-top: 2rem;
 		line-height: 1.5;
 	}
 </style>

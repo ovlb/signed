@@ -4,6 +4,10 @@
 	export let favs: Set<string>;
 	const dispatch = createEventDispatcher();
 
+	function dispatchApply(item: string) {
+		dispatch('applyFav', { item });
+	}
+
 	function dispatchRemove(item: string) {
 		dispatch('removeFav', { item });
 	}
@@ -15,13 +19,14 @@
 	<ul class="fav-list" role="list">
 		{#each Array.from(favs).reverse() as fav (fav)}
 			<li>
-				{fav}
+				<button class="btn-fav" on:click={() => dispatchApply(fav)}>{fav}</button>
 				<button class="btn-remove" aria-label="Remove {fav}" on:click={() => dispatchRemove(fav)}
 					>x</button
 				>
 			</li>
 		{/each}
 	</ul>
+	<p><small>Click on a fav to apply it.</small></p>
 {:else}
 	<p>Nothing saved. Yet,</p>
 {/if}
@@ -33,6 +38,16 @@
 		gap: 1rem;
 		list-style: none;
 		padding: 0;
+	}
+
+	.btn-fav {
+		appearance: none;
+		border: none;
+		background-color: transparent;
+	}
+
+	.btn-fav:active {
+		font-weight: bold;
 	}
 
 	.btn-remove {

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher, onMount } from 'svelte';
 	import { punctuation } from '../data/form-data';
-	import type { Punctuation } from '../data/form-data';
 	import { updateURLState } from '../utils/update-state';
 
 	const dispatch = createEventDispatcher();

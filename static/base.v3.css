@@ -32,7 +32,7 @@ button {
   cursor: pointer;
 }
 
-button:not(.btn-remove) {
+button:not([class^=btn-]) {
 		background-color: hotpink;
 		border: none;
 		border-radius: 0.25rem;
@@ -43,8 +43,8 @@ button:not(.btn-remove) {
     position: relative;
 	}
 
-	button:not(.btn-remove):hover,
-	button:not(.btn-remove):focus {
+	button:not([class^=btn-]):hover,
+	button:not([class^=btn-]):focus {
 		background-color: paleturquoise;
 		color: black;
 		transform: scale(1.2);
