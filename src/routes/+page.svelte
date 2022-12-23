@@ -130,9 +130,12 @@
 
 <footer>
 	<small
-		>Another project from <a href="https://www.todayintabs.com/">Today in Tabs’</a> Discord. Subscribe
-		for fun.</small
-	>
+		>Another project from <a href="https://www.todayintabs.com/" rel="noopener,nofollow"
+			>Today in Tabs’</a
+		>
+		Discord. Subscribe for fun.<br />
+		<a href="https://github.com/ovlb/signed" rel="noopener,nofollow">Source Code</a>
+	</small>
 </footer>
 
 <style>
