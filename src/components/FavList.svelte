@@ -40,7 +40,7 @@
 		background-color: darkred;
 		border: 1px solid red;
 		border-radius: 0.25rem;
-		font-size: smaller;
+		font-size: 0.6rem;
 		color: white;
 		height: 1rem;
 		line-height: 1;
