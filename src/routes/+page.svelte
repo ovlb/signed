@@ -3,11 +3,18 @@
 	import { page } from '$app/stores';
 	import { signatures } from '../data/signed';
 	import MailWindow from '../components/MailWindow.svelte';
+	import ControlSection from '../components/ControlSection.svelte';
+	import FavList from '../components/FavList.svelte';
+
+	const LS_FAVS = 'sigFavs';
 
 	let name = '';
 	let activeSignature = '';
+	let shownPunctuation: string;
+	let favs: Set<string> = new Set();
+	// let excluded: string[] = [];
 
-	$: activeIndex = -1;
+	// $: activeIndex = -1;
 	// $: () => $page.url.searchParams.set('name', String(name));
 
 	const { length } = signatures;
@@ -28,7 +35,15 @@
 				name = mountedName;
 			}
 		}
+
+		const currentFavs = JSON.parse(localStorage.getItem(LS_FAVS) ?? '[]');
+
+		currentFavs.forEach((fav: string) => favs.add(fav));
 	});
+
+	function updateFavStorage() {
+		localStorage.setItem(LS_FAVS, JSON.stringify(Array.from(favs)));
+	}
 
 	function setActiveSignature() {
 		const newIndex = Math.floor(Math.random() * length);
@@ -37,6 +52,30 @@
 		activeIndex = newIndex;
 
 		window.history.replaceState('', '', `?signature=${newIndex}&name=${name}`);
+	}
+
+	function handleClick(event: CustomEvent) {
+		const { type } = event.detail;
+
+		if (type === 'fav') {
+			favs = favs.add(activeSignature);
+
+			updateFavStorage();
+		}
+
+		if (type === 'reset') {
+			favs = new Set();
+
+			updateFavStorage();
+		}
+	}
+
+	function removeFav(event: CustomEvent) {
+		favs.delete(event.detail.item);
+
+		favs = favs;
+
+		updateFavStorage();
 	}
 </script>
 
@@ -58,10 +97,12 @@
 	{#if activeSignature && name}
 		<MailWindow>
 			<p>
-				{activeSignature},<br />
+				{activeSignature}{shownPunctuation}<br />
 				{name}
 			</p>
 		</MailWindow>
+		<ControlSection bind:active={shownPunctuation} on:btnClick={handleClick} />
+		<FavList {favs} on:removeFav={removeFav} />
 	{/if}
 </main>
 
@@ -74,25 +115,13 @@
 
 <style>
 	main,
+	header,
+	footer {
+		max-width: var(--content-max-width);
+	}
+	main,
 	footer {
 		margin-top: 3rem;
 		line-height: 1.5;
-	}
-
-	button {
-		background-color: hotpink;
-		border: none;
-		border-radius: 0.25rem;
-		padding: 0.5rem 0.75rem;
-		color: white;
-		font-weight: bold;
-		transition: all 0.2s ease-out;
-	}
-
-	button:hover,
-	button:focus {
-		background-color: paleturquoise;
-		color: black;
-		transform: scale(1.2);
 	}
 </style>

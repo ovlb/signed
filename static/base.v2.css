@@ -1,0 +1,52 @@
+:root {
+  --content-max-width: 45rem;
+}
+
+body {
+  accent-color: hotpink;
+  font-family: sans-serif;
+  padding: 5vmin;
+}
+
+*, *::after, *::before {
+  font-family: inherit;
+  font-size: inherit;
+  box-sizing: border-box;
+}
+
+::selection {
+  background-color: black;
+  color: white;
+}
+
+:focus-visible {
+  outline: 0.125rem solid hotpink;
+  outline-offset: 0.125rem;
+}
+
+small {
+  font-size: smaller;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:not(.btn-remove) {
+		background-color: hotpink;
+		border: none;
+		border-radius: 0.25rem;
+		padding: 0.5rem 0.75rem;
+		color: white;
+		font-weight: bold;
+		transition: all 0.2s ease-out;
+    position: relative;
+	}
+
+	button:not(.btn-remove):hover,
+	button:not(.btn-remove):focus {
+		background-color: paleturquoise;
+		color: black;
+		transform: scale(1.2);
+    z-index: 2;
+	}
