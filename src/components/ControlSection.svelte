@@ -44,23 +44,35 @@
 <div class="control-section">
 	<fieldset>
 		<legend>Choose punctuation</legend>
-		{#each punctuation as p, i (p.sign)}
-			<label for="{p.value}_{i}">
-				<input
-					type="radio"
-					name="punctuation"
-					id="{p.value}_{i}"
-					bind:group={active}
-					value={p.sign}
-				/>
-				{p.value}
-			</label>
-		{/each}
+		<div class="controls">
+			{#each punctuation as p, i (p.sign)}
+				<label for="{p.value}_{i}">
+					<input
+						type="radio"
+						name="punctuation"
+						id="{p.value}_{i}"
+						bind:group={active}
+						value={p.sign}
+					/>
+					{p.value}
+				</label>
+			{/each}
+		</div>
 	</fieldset>
 	<fieldset>
 		<legend>Signatures</legend>
-		<button on:click={() => dispatchBtn('fav')}>Save to favourites</button>
-		<button on:click={confirmReset}>Reset favourites</button>
+		<div class="controls">
+			<button on:click={() => dispatchBtn('fav')}>Save to favourites</button>
+			<button on:click={confirmReset}>Reset favourites</button>
+		</div>
 		<!-- <button on:click={() => dispatchBtn('del')}>Remove from pool</button> -->
 	</fieldset>
 </div>
+
+<style>
+	.controls {
+		display: flex;
+		flex-flow: row wrap;
+		gap: 1rem;
+	}
+</style>
