@@ -47,7 +47,11 @@
 	}
 
 	function setActiveSignature() {
-		const newIndex = Math.floor(Math.random() * length);
+		let newIndex = Math.floor(Math.random() * length);
+
+		while (newIndex === activeIndex) {
+			newIndex = Math.floor(Math.random() * length);
+		}
 
 		activeSignature = signatures[newIndex];
 		activeIndex = newIndex;
