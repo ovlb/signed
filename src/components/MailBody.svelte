@@ -1,8 +1,8 @@
 <script lang="ts">
-	const numberOfRows = Array(Math.floor(Math.random() * 7 + 3));
+	const numberOfRows = Array(Math.floor(Math.random() * 3 + 1));
 
 	function getRowWidth() {
-		return Math.floor(Math.random() * 85 + 10);
+		return Math.floor(Math.random() * 25 + 70);
 	}
 </script>
 
@@ -10,6 +10,7 @@
 {#each numberOfRows as _, i}
 	<div class="placeholder" style="--ph-width: {getRowWidth()}%" />
 {/each}
+<div class="placeholder" style="--ph-width: 45%" />
 
 <style>
 	.salutation,
