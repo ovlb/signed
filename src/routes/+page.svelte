@@ -14,7 +14,7 @@
 	let favs: Set<string> = new Set();
 	// let excluded: string[] = [];
 
-	// $: activeIndex = -1;
+	$: activeIndex = -1;
 	// $: () => $page.url.searchParams.set('name', String(name));
 
 	const { length } = signatures;

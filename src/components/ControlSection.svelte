@@ -4,8 +4,11 @@
 	import type { Punctuation } from '../data/form-data';
 
 	const dispatch = createEventDispatcher();
+	const LS_PUNC = 'sigPunc';
 
-	export let active: string = punctuation[0].sign;
+	export let active: string = localStorage.getItem(LS_PUNC) || punctuation[0].sign;
+
+	$: localStorage.setItem(LS_PUNC, active);
 
 	function confirmReset() {
 		if (window.confirm('Do you really want to remove all favourites?')) {
