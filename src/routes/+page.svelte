@@ -12,6 +12,7 @@
 	let activeSignature = '';
 	let shownPunctuation: string;
 	let favs: Set<string> = new Set();
+	let seenSignatures: Set<number> = new Set();
 	// let excluded: string[] = [];
 
 	$: activeIndex = -1;
@@ -48,12 +49,25 @@
 	function setActiveSignature() {
 		let newIndex = Math.floor(Math.random() * length);
 
+		// increase likelihood to circle through possible signatures
+		if (seenSignatures.has(newIndex)) {
+			newIndex = Math.floor(Math.random() * length);
+		}
+
+		// force new to be different from current state, should be a no-op in most cases
 		while (newIndex === activeIndex) {
 			newIndex = Math.floor(Math.random() * length);
 		}
 
+		seenSignatures.add(newIndex);
+
 		activeSignature = signatures[newIndex];
 		activeIndex = newIndex;
+
+		// if user seen everything we might as well start again
+		if (seenSignatures.size === length) {
+			seenSignatures.clear();
+		}
 
 		updateURLState('signature', activeIndex);
 	}
