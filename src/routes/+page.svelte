@@ -4,7 +4,6 @@
 	import { signatures } from '../data/signed';
 	import MailWindow from '../components/MailWindow.svelte';
 	import ControlSection from '../components/ControlSection.svelte';
-	import FavList from '../components/FavList.svelte';
 	import { updateURLState } from '../utils/update-state';
 
 	const LS_FAVS = 'sigFavs';
@@ -107,7 +106,11 @@
 			</p>
 		</MailWindow>
 		<ControlSection bind:active={shownPunctuation} on:btnClick={handleClick} />
-		<FavList {favs} on:removeFav={removeFav} />
+		{#if favs.size}
+			{#await import('../components/FavList.svelte') then component}
+				<svelte:component this={component.default} {favs} on:removeFav={removeFav} />
+			{/await}
+		{/if}
 	{/if}
 </main>
 
