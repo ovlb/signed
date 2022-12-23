@@ -15,6 +15,8 @@
 	.salutation,
 	.placeholder {
 		background-color: #555;
+		background-image: linear-gradient(to left, transparent, #777, transparent);
+		border-radius: 0.125rem;
 		height: 1rem;
 		width: var(--ph-width, 75%);
 	}
