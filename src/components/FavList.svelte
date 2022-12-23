@@ -42,6 +42,9 @@
 		border-radius: 0.25rem;
 		font-size: smaller;
 		color: white;
+		height: 1rem;
+		line-height: 1;
 		transform: translateY(-50%);
+		width: 1rem;
 	}
 </style>
